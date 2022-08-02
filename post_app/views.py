@@ -12,7 +12,7 @@ class PostsViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated, )
-    authentication_classes = (TokenAuthentication, )
+    # authentication_classes = (TokenAuthentication, )  # not working with JWT
 
     @action(methods=['get'], detail=False)
     def likes_list(self, request):
