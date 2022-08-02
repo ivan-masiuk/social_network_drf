@@ -2,10 +2,10 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 
 from .serializers import *
 from .models import Post, Like
+from .pagination import PostPagination
 
 
 class PostsViewSet(viewsets.ModelViewSet):
@@ -13,6 +13,7 @@ class PostsViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated, )
     # authentication_classes = (TokenAuthentication, )  # not working with JWT
+    pagination_class = PostPagination
 
     @action(methods=['get'], detail=False)
     def likes_list(self, request):
